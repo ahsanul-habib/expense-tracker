@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .active{
+    background-color: #14B8A6;
+    color: white;
+} */
+
+@layer base {
+  body {
+    font-family: "Roboto", "Inter", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .active {
+    @apply bg-teal-500 hover:!bg-teal-600 text-white hover:!text-white font-semibold;
+  }
+  
+  .red{
+    @apply text-red-500;
+  }
+}
+
+/* 
+.active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(20 184 166 / var(--tw-bg-opacity));
+    font-weight: 600;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+  
+  .active:hover {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(13 148 136 / var(--tw-bg-opacity)) !important;
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+  } */
