@@ -14,8 +14,8 @@ function App() {
 
   const [formData, setFormData] = useState({
     amount: "",
+    date: "",
     category: expenseCategories[0].title,
-    date: new Date().toISOString().split('T')[0],
     type: "Expense",
   })
 
