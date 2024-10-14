@@ -1,8 +1,80 @@
-# React + Vite
+# Expense Tracker App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and intuitive expense tracker application built using **Vite**, **React**, and **Tailwind CSS**. This app allows users to track their daily expenses, add new transactions, and view a summary of their expenses.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add and remove transactions (income/expense)
+- View balance and total income/expense
+- Filter transactions by date or type
+- Responsive UI using Tailwind CSS
+- Fast build and development setup with Vite
+
+## Tech Stack
+
+- **Frontend**: React, Tailwind CSS
+- **Build Tool**: Vite
+- **State Management**: React Hooks (useState)
+
+## Installation
+
+To get started with the project, follow these steps:
+
+1. **Clone the repository**:
+```bash
+git clone https://github.com/ahsanul-habib/expense-tracker.git
+cd expense-tracker
+```
+
+2. **Install dependencies**:
+
+```bash
+npm install
+```
+
+3. **Run the development server**:
+
+```bash
+npm run dev
+```
+
+4. **Build for production**:
+
+To create a production-ready build of the app:
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+After building the project, you can preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Project Structure
+```php
+
+├── public               # Static files
+├── src
+│   ├── components       # Reusable components
+│   ├── App.jsx          # Main App component
+│   ├── App.css          # Main App styles
+│   ├── index.css        # Global styles (tailwind configuration)
+│   └── index.jsx        # Entry point for the app
+├── package.json         # Project metadata and dependencies
+├── postcss.config.js    # PostCSS configuration for Tailwind CSS
+├── tailwind.config.js   # Tailwind CSS configuration
+└── vite.config.js       # Vite configuration
+```
+
+## Available Scripts
+`npm run dev`: Start the development server
+
+`npm run build`: Build the app for production
+
+`npm run preview`: Preview the production build locally
+
+`npm run lint`: Lint your code using ESLint
