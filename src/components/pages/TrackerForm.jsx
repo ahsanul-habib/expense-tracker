@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const TrackerForm = ({
   incomeCategories,
   expenseCategories,
@@ -9,8 +7,9 @@ const TrackerForm = ({
   setIsEditMode,
   formData,
   setFormData,
+  isExpenseActive,
+  setIsExpenseActive
 }) => {
-  const [isExpenseActive, setIsExpenseActive] = useState(true);
 
   const changeIsExpenseActiveTo = (isTrue) => {
     setIsExpenseActive(isTrue);
@@ -37,17 +36,19 @@ const TrackerForm = ({
       [name]: value,
     });
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditMode) {
+      if(confirm(`Are you sure you want to update your data to ${formData.amount} Taka as ${formData.category} to your ${formData.type} list?`)){
       updateItem({
-          id: crypto.randomUUID(),
-          type: formData.type,
-          category: formData.category,
-          date: new Date(formData.date),
-          amount: parseInt(formData.amount)
+        id: crypto.randomUUID(),
+        type: formData.type,
+        category: formData.category,
+        date: new Date(formData.date),
+        amount: parseInt(formData.amount)
       })
+    }
       setIsEditMode(false);
       return;
     }
@@ -55,6 +56,7 @@ const TrackerForm = ({
       alert("Please fill all the fields");
       return;
     }
+    if(confirm(`Are you sure you want to add ${formData.amount} Taka as ${formData.category} to your ${formData.type} list?`)){
       addItem({
         id: crypto.randomUUID(),
         type: formData.type,
@@ -62,6 +64,7 @@ const TrackerForm = ({
         date: new Date(formData.date),
         amount: parseInt(formData.amount)
       });
+    }
   };
 
   return (

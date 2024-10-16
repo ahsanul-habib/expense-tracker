@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { IncomeIconSVG } from "../SVG";
 
-const ExpenseSection = ({
-  expenseCategories,
-  expenseSheet,
+const IncomeSection = ({
+  incomeCategories,
+  incomeSheet,
   removeItem,
   isSortingBoxOpen,
   setIsSortingBoxOpen,
@@ -13,24 +14,20 @@ const ExpenseSection = ({
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [sortingOrder, setSortingOrder] = useState("");
 
-  let currentExpenseArray = [];
+  let currentIncomeArray = [];
 
   if (filteredCategories.length === 0) {
-    currentExpenseArray = [...expenseSheet];
+    currentIncomeArray = [...incomeSheet];
   } else {
-    currentExpenseArray = expenseSheet.filter((item) =>
+    currentIncomeArray = incomeSheet.filter((item) =>
       filteredCategories.includes(item.category)
     );
   }
 
   if (sortingOrder == "ascending") {
-    currentExpenseArray = currentExpenseArray.sort(
-      (a, b) => a.amount - b.amount
-    );
+    currentIncomeArray = currentIncomeArray.sort((a, b) => a.amount - b.amount);
   } else if (sortingOrder == "descending") {
-    currentExpenseArray = currentExpenseArray.sort(
-      (a, b) => b.amount - a.amount
-    );
+    currentIncomeArray = currentIncomeArray.sort((a, b) => b.amount - a.amount);
   }
 
   const changeSortingOrder = (order) => {
@@ -61,39 +58,21 @@ const ExpenseSection = ({
   };
 
   return (
-    <div className="border rounded-md">
+    <div className="border rounded-md relative">
       {/* Header */}
       <div className="flex items-center justify-between gap-2 bg-[#F9FAFB] py-4 px-4 rounded-md">
         <div className="flex items-center gap-2">
           {/* Icon */}
-          <div className="h-10 w-10 bg-pink-600 text-white rounded-md text-center object-center place-content-center text-base">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mx-auto"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M17 8v-3a1 1 0 0 0 -1 -1h-8m-3.413 .584a2 2 0 0 0 1.413 3.416h2m4 0h6a1 1 0 0 1 1 1v3" />
-              <path d="M19 19a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-              <path d="M16 12h4v4m-4 0a2 2 0 0 1 -2 -2" />
-              <path d="M3 3l18 18" />
-            </svg>
+          <div className="h-10 w-10 bg-teal-600 text-white rounded-md text-center object-center place-content-center text-base">
+            <IncomeIconSVG />
           </div>
           {/* Text */}
           <div>
             <h3 className="text-xl font-semibold leading-7 text-gray-800">
-              Expense
+              Income
             </h3>
           </div>
         </div>
-        {/* Sorting and Filtering Column */}
         <div>
           {/* Sorting */}
           <div className="relative inline-block text-left">
@@ -102,7 +81,7 @@ const ExpenseSection = ({
                 type="button"
                 onClick={handleSortingBoxClicked}
                 className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                id="menu-button2"
+                id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
               >
@@ -129,10 +108,10 @@ const ExpenseSection = ({
             </div>
             {isSortingBoxOpen && (
               <div
-                className="absolute z-10 mt-2 right-5 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                role="menu2"
+                className="absolute z-10 mt-2 left-5 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu"
                 aria-orientation="vertical"
-                aria-labelledby="menu-button2"
+                aria-labelledby="menu-button"
                 tabIndex={-1}
               >
                 <div className="py-1" role="none">
@@ -159,13 +138,14 @@ const ExpenseSection = ({
             )}
           </div>
           {/* Filtering */}
+
           <div className="relative inline-block text-left">
             <div>
               <button
                 type="button"
                 onClick={handleFilteringBoxClicked}
                 className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                id="filter-button-2"
+                id="filter-button"
                 aria-expanded="true"
                 aria-haspopup="true"
               >
@@ -196,19 +176,18 @@ const ExpenseSection = ({
             </div>
             {isFilteringBoxOpen && (
               <div
+                onClick={(e) => e.stopPropagation()}
                 className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu"
                 aria-orientation="vertical"
-                aria-labelledby="filter-button-2"
+                aria-labelledby="filter-button"
                 tabIndex={-1}
-                id="filter-dropdown2"
-                onClick={(e)=>e.stopPropagation()}
+                id="filter-dropdown"
               >
                 <div className="py-1" role="none">
-                  {expenseCategories.map((category) => (
+                  {incomeCategories.map((category) => (
                     <label
                       key={category.id}
-                      htmlFor={category.title}
                       className="inline-flex items-center px-4 py-2 text-sm text-gray-700"
                     >
                       <input
@@ -228,37 +207,37 @@ const ExpenseSection = ({
         </div>
       </div>
       <div className="p-4 divide-y">
-        {currentExpenseArray.length === 0 && (
+        {incomeSheet.length === 0 && (
           <div className="flex justify-center items-center py-2">
             <h3 className="text-base font-medium leading-7 text-gray-600">
               No Expense Record
             </h3>
           </div>
         )}
-        {currentExpenseArray.map((expense) => (
+        {currentIncomeArray.map((income) => (
           <div
-            key={expense.id}
+            key={income.id}
             className="flex justify-between items-center py-2 relative group cursor-pointer"
           >
             <div>
               <h3 className="text-base font-medium leading-7 text-gray-600">
-                {expense.category}
+                {income.category}
               </h3>
               <p className="text-xs text-gray-600">
                 {new Intl.DateTimeFormat("en-GB", {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
-                }).format(expense.date)}
+                }).format(income.date)}
               </p>
             </div>
             <div className="flex items-center gap-2">
               <p className="text-base font-semibold text-gray-600 transition-all group-hover:-translate-x-14">
-                BDT {expense.amount}
+                BDT {income.amount}
               </p>
               <div className="translate-x-5 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 absolute right-0 top-1/2 -translate-y-1/2 transition-all">
                 <button
-                  onClick={()=>handleEditMode(expense)}
+                  onClick={() => handleEditMode(income)}
                   className="hover:text-teal-600"
                   role="button"
                   title="Edit Button"
@@ -280,10 +259,10 @@ const ExpenseSection = ({
                   </svg>
                 </button>
                 <button
+                  onClick={() => removeItem(income.id,"Income")}
                   className="hover:text-red-600"
                   role="button"
                   title="Delete"
-                  onClick={() => removeItem(expense.id,"Expense")}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -313,4 +292,4 @@ const ExpenseSection = ({
   );
 };
 
-export default ExpenseSection;
+export default IncomeSection;

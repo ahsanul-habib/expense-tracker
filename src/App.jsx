@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import TrackerForm from "./components/TrackerForm";
-import TotalBalance from "./components/TotalBalance";
-import IncomeSection from "./components/IncomeSection";
-import ExpenseSection from "./components/ExpenseSection";
+import Header from "./components/pages/Header";
+import TrackerForm from "./components/pages/TrackerForm";
+import TotalBalance from "./components/pages/TotalBalance";
+import IncomeSection from "./components/pages/IncomeSection";
+import ExpenseSection from "./components/pages/ExpenseSection";
 
 import { incomeCategories, expenseCategories } from "./data/categories";
 
@@ -18,6 +18,8 @@ function App() {
     category: expenseCategories[0].title,
     type: "Expense",
   })
+
+  const [isExpenseActive, setIsExpenseActive] = useState(true);
 
   const [isIncomeFilteringBoxOpen, setIsIncomeFilteringBoxOpen] = useState(false);
   const [isIncomeSortingBoxOpen, setIsIncomeSortingBoxOpen] = useState(false);
@@ -75,6 +77,7 @@ function App() {
   const handleEditMode=(data)=>{
     setIsEditMode(true);
     setIdToEdit(data.id);
+    setIsExpenseActive(data.type==="Expense");
     setFormData({
       ...data,
       date: new Date(data.date).toISOString().split('T')[0],
@@ -97,6 +100,8 @@ function App() {
             formData={formData}
             setFormData={setFormData}
             updateItem={updateItem}
+            isExpenseActive={isExpenseActive}
+            setIsExpenseActive={setIsExpenseActive}
           />
           <div className="lg:col-span-2">
             <TotalBalance
