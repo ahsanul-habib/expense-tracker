@@ -57,17 +57,27 @@ npm run preview
 ## Project Structure
 ```php
 
-├── public               # Static files
+├── public                                  # Static files
 ├── src
-│   ├── components       # Reusable components
-│   ├── App.jsx          # Main App component
-│   ├── App.css          # Main App styles
-│   ├── index.css        # Global styles (tailwind configuration)
-│   └── index.jsx        # Entry point for the app
-├── package.json         # Project metadata and dependencies
-├── postcss.config.js    # PostCSS configuration for Tailwind CSS
-├── tailwind.config.js   # Tailwind CSS configuration
-└── vite.config.js       # Vite configuration
+│   ├── assets                              # Project assets
+│   ├── data                                # Project data
+│   │     └── Categories.js                 # Categories data
+│   ├── components                          # Reusable components
+│   │     ├── pages                         # Page components
+│   │     │     ├── Header.jsx              # Header Section component
+│   │     │     ├── TrackerForm.jsx         # Tracker Form Section component
+│   │     │     ├── ExpenseSection.jsx      # Expense Section component
+│   │     │     ├── IncomeSection.jsx       # Income Section component
+│   │     │     └── TotalBalance.jsx        # Total Balance Section component
+│   │     └── SVG.jsx                       # All SVG components packed
+│   ├── App.jsx                             # Main App component
+│   ├── App.css                             # Main App styles
+│   ├── index.css                           # Global styles (tailwind configuration)
+│   └── index.jsx                           # Entry point for the app
+├── package.json                            # Project metadata and dependencies
+├── postcss.config.js                       # PostCSS configuration for Tailwind CSS
+├── tailwind.config.js                      # Tailwind CSS configuration
+└── vite.config.js                          # Vite configuration
 ```
 
 ## Available Scripts
